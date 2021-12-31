@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss";
 import PokemonList from "./../pokemon-components/pokemonList/index";
 
-const DashBoard = () => {
+const DashBoard = ({ handleLoader }) => {
   return (
     <div className="dashboard-wrapper">
       <input
@@ -11,7 +11,9 @@ const DashBoard = () => {
         placeholder="Search Pokemon by id or name"
       ></input>
       <PokemonList />
-      <button className="load-button"> Load More </button>
+      <button onClick={handleLoader} className="load-button">
+        Load More
+      </button>
     </div>
   );
 };

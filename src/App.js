@@ -1,34 +1,46 @@
-import React from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import DashBoard from "./components/Dashboard";
 import Navbar from "./components/navbar";
 
-const baseURL = "";
-
 const App = () => {
-  const [post, setPost] = React.useState(null);
-  const [error, setError] = React.useState(null);
+  const [allPokemons, setAllPokemons] = useState([]);
+  const [loadMore, setLoadMore] = useState(
+    " https://pokeapi.co/api/v2/pokemon?limit=20"
+  );
 
-  React.useEffect(() => {
-    // invalid url will trigger an 404 error
-    axios
-      .get(`${baseURL}/asdf`)
-      .then((response) => {
-        setPost(response.data);
-      })
-      .catch((error) => {
-        setError(error);
-      });
+  const createPokemonObject = (results) => {
+    let finalArray = [];
+    results.map(async (pokemon) => {
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
+      );
+      const data = await response.json();
+      finalArray.push(data);
+    });
+    return finalArray;
+  };
+
+  const getAllPokemons = async () => {
+    const response = await fetch(loadMore);
+    const data = await response.json();
+
+    const pokemons = createPokemonObject(data.results);
+    setAllPokemons(pokemons);
+  };
+
+  const handleLoader = () => {
+    // setLoadMore();
+  };
+  useEffect(() => {
+    getAllPokemons();
   }, []);
 
-  // if (error) return `Error: ${error.message}`;
-  // if (!post) return "No post!";
-
+  console.log(allPokemons);
   return (
     <div className="main-container">
       <Navbar />
-      <DashBoard />
+      <DashBoard handleLoader={handleLoader} />
     </div>
   );
 };
