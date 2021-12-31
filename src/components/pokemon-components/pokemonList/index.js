@@ -14,6 +14,15 @@ const PokemonList = () => {
       <PokemonCard />
       <PokemonCard />
       <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
+      <PokemonCard />
     </div>
   );
 };

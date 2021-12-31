@@ -1,5 +1,48 @@
 .dashboard-wrapper {
   display: flex;
-  margin-top: 200px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
   margin-left: 50px;
+}
+
+.searchbar {
+  width: 25%;
+  height: 30px;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #dddddd;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.searchbar:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.searchbar:hover {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.load-button {
+  font-size: medium;
+  font-weight: 500;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  border-radius: 7px;
+  color: black;
+  border: 2px solid #008cba;
+  margin: 8px 0;
+}
+
+.load-button:hover {
+  background-color: #008cba;
+  color: white;
 }
