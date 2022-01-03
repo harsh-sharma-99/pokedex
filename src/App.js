@@ -16,6 +16,7 @@ const App = () => {
         `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
       );
       const data = await response.json();
+
       finalArray.push(data);
     });
     return finalArray;
@@ -24,23 +25,25 @@ const App = () => {
   const getAllPokemons = async () => {
     const response = await fetch(loadMore);
     const data = await response.json();
+    setLoadMore(data?.next);
 
-    const pokemons = createPokemonObject(data.results);
+    const pokemons = createPokemonObject(data?.results);
     setAllPokemons(pokemons);
   };
 
   const handleLoader = () => {
-    // setLoadMore();
+    getAllPokemons();
   };
+
   useEffect(() => {
     getAllPokemons();
   }, []);
+  console.log("app");
 
-  console.log(allPokemons);
   return (
     <div className="main-container">
       <Navbar />
-      <DashBoard handleLoader={handleLoader} />
+      <DashBoard allPokemons={allPokemons} handleLoader={handleLoader} />
     </div>
   );
 };
