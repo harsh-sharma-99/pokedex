@@ -9,26 +9,11 @@ const App = () => {
     " https://pokeapi.co/api/v2/pokemon?limit=20"
   );
 
-  const createPokemonObject = (results) => {
-    let finalArray = [];
-    results.map(async (pokemon) => {
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-      );
-      const data = await response.json();
-
-      finalArray.push(data);
-    });
-    return finalArray;
-  };
-
   const getAllPokemons = async () => {
     const response = await fetch(loadMore);
     const data = await response.json();
     setLoadMore(data?.next);
-
-    const pokemons = createPokemonObject(data?.results);
-    setAllPokemons(pokemons);
+    setAllPokemons((prev) => [...prev, ...data.results]);
   };
 
   const handleLoader = () => {
@@ -38,7 +23,6 @@ const App = () => {
   useEffect(() => {
     getAllPokemons();
   }, []);
-  console.log("app");
 
   return (
     <div className="main-container">

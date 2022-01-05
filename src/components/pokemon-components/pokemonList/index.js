@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PokemonCard from "./../pokemonCard";
+
 import "./styles.scss";
 
-const renderList = (allPokemons) =>
-  allPokemons?.map((pokemon) => <PokemonCard pokemon={pokemon} />);
-
 const PokemonList = ({ allPokemons }) => {
-  console.log(allPokemons);
-
   return (
     <div className="poke-list">
-      {allPokemons.map(() => (
-        <PokemonCard />
+      {allPokemons.map((pokemon) => (
+        <PokemonCard url={pokemon.url} name={pokemon.name} />
       ))}
     </div>
   );
