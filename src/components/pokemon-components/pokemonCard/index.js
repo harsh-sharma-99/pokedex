@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./styles.scss";
-import axios from "axios";
 
 const PokemonCard = ({ name, url }) => {
   const [pokemonDetails, setPokemonDetails] = useState([]);
 
-  // const fetchPokemonsDetailsList = (pokemonList) => {
-  //   console.log(pokemonList);
-  //   axios.get(pokemonList.url).then((response) => {
-  //     console.log(response.data);
-  //   setPost(response.data);
-  //   });
-  // };
+  const fetchIndividualPokemon = useCallback(async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setPokemonDetails(data);
+  }, [url]);
 
-  // useEffect(() => {
-  //   fetchPokemonsDetailsList(url);
-  // }, [fetchPokemonsDetailsList]);
+  useEffect(() => {
+    fetchIndividualPokemon();
+  }, [fetchIndividualPokemon]);
 
+  console.log(pokemonDetails);
   return (
     <div className="poke-card">
       <div className="poke-header">{name}</div>
+      {/* <div>{pokemonDetails?.abilities}</div> */}
     </div>
   );
 };
