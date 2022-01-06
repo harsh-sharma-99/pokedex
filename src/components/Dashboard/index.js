@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 import PokemonList from "./../pokemon-components/pokemonList/index";
+import Search from "../Search";
+import { searchPokemons } from "../serviceApi";
 
-const DashBoard = ({ allPokemons, handleLoader }) => {
+const DashBoard = ({ allPokemons, handleLoader, loader, setLoader }) => {
+  const handleSearch = (query) => {
+    setLoader(true);
+    console.log(query);
+    // searchPokemons;
+    setLoader(false);
+  };
+
   return (
     <div className="dashboard-wrapper">
-      <input
-        className="searchbar"
-        type="text"
-        placeholder="Search Pokemon by id or name"
-      ></input>
-      <PokemonList allPokemons={allPokemons} />
+      <Search handleSearch={handleSearch} />
+      {loader ? (
+        <div>Loading ...</div>
+      ) : (
+        <PokemonList allPokemons={allPokemons} />
+      )}
       <button onClick={handleLoader} className="load-button">
         Load More
       </button>

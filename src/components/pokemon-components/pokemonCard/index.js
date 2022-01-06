@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { getIndividualPokemon } from "../../serviceApi";
 import "./styles.scss";
-import axios from "axios";
 
 const PokemonCard = ({ name, url }) => {
   const [pokemonDetails, setPokemonDetails] = useState([]);
 
   const fetchIndividualPokemon = useCallback(async () => {
-    const response = await fetch(url);
+    const response = await getIndividualPokemon(url);
     const data = await response.json();
     setPokemonDetails(data);
   }, [url]);
@@ -25,7 +25,7 @@ const PokemonCard = ({ name, url }) => {
     return (
       <img
         style={{ width: "212px", height: "240px" }}
-        src={`https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${pokemonDetails?.id}.svg`}
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonDetails?.id}.png`}
         alt={`${pokemonDetails.name}`}
       />
     );
