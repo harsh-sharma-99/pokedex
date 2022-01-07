@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useState } from "react";
 import { getIndividualPokemon } from "../../serviceApi";
 import "./styles.scss";
 
-const PokemonCard = ({ name, url }) => {
+const PokemonCard = ({ pokemon }) => {
   const [pokemonDetails, setPokemonDetails] = useState([]);
 
   const fetchIndividualPokemon = useCallback(async () => {
-    const response = await getIndividualPokemon(url);
+    const response = await getIndividualPokemon(pokemon?.url);
     const data = await response.json();
     setPokemonDetails(data);
-  }, [url]);
+  }, [pokemon]);
 
   useEffect(() => {
     fetchIndividualPokemon();
@@ -31,10 +31,9 @@ const PokemonCard = ({ name, url }) => {
     );
   };
 
-  // console.log(pokemonDetails);
   return (
     <div className="poke-card">
-      <div className="poke-header">{name}</div>
+      <div className="poke-header">{pokemon?.name}</div>
       {pokemonDetails && showAbilities()}
       {pokemonDetails && showPhotos()}
     </div>

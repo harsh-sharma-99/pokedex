@@ -4,3 +4,14 @@
   flex-wrap: wrap;
   margin-top: 10px;
 }
+
+.poke-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.poke-loader {
+  text-align: center;
+  color: red;
+  font-weight: 700;
+}

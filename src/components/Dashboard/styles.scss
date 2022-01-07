@@ -6,28 +6,10 @@
   margin-left: 50px;
 }
 
-.searchbar {
-  width: 25%;
-  height: 30px;
-  outline: none;
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid #dddddd;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.searchbar:focus {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 1px solid rgba(81, 203, 238, 1);
-}
-
-.searchbar:hover {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  border: 1px solid rgba(81, 203, 238, 1);
+.pokeList-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .load-button {

@@ -1,3 +1,4 @@
+import axios from "axios";
 const baseUrl = "https://pokeapi.co/api/v2";
 const query = {
   pokemon: "pokemon",
@@ -21,9 +22,10 @@ export async function getIndividualPokemon(url) {
   }
 }
 
-export async function searchPokemons(pokemon) {
+//Api call to search pokemon
+export function searchPokemons(pokemon) {
   try {
-    return await fetch(`${baseUrl}/${query.pokemon}/${pokemon}`);
+    return axios.get(`${baseUrl}/${query.pokemon}/${pokemon}`);
   } catch (error) {
     console.log(error);
   }

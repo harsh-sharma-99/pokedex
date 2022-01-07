@@ -1,18 +1,22 @@
 import React, { useState } from "react";
+import "./styles.scss";
 
-const Search = ({ handleSearch }) => {
-  const [query, searchQuery] = useState();
-  const searchPokemon = (e) => {
-    handleSearch(e.target.value.toLowerCase());
-  };
+const Search = ({ handleSearch, setSearch }) => {
+  const [value, setValue] = useState("");
   return (
-    <input
-      className="searchbar"
-      value={query}
-      onChange={searchPokemon}
-      type="text"
-      placeholder="Search Pokemon by id or name"
-    ></input>
+    <div className="">
+      <input
+        className="searchbar"
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          setSearch(e.target.value);
+        }}
+        type="text"
+        placeholder="Search Pokemon by name"
+      />
+      <button onClick={() => handleSearch(value)}>Search</button>
+    </div>
   );
 };
 

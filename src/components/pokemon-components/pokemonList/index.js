@@ -3,12 +3,15 @@ import PokemonCard from "./../pokemonCard";
 
 import "./styles.scss";
 
-const PokemonList = ({ allPokemons }) => {
+const PokemonList = ({ allPokemons, loader }) => {
   return (
-    <div className="poke-list">
-      {allPokemons.map((pokemon) => (
-        <PokemonCard url={pokemon.url} name={pokemon.name} />
-      ))}
+    <div className="poke-wrapper">
+      <div className="poke-list">
+        {allPokemons.map((pokemon) => (
+          <PokemonCard pokemon={pokemon} />
+        ))}
+      </div>
+      {loader && <div className="poke-loader">Loading....</div>}
     </div>
   );
 };
